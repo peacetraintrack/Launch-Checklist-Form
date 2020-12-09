@@ -1,49 +1,88 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function () {
-   let form = document.getElementById("launchForm");
-   form.addEventListener("submit", function (event) {
-      let pilotNameInput = document.querySelector("input[name=pilotName]");
-      let copilotNameInput = document.querySelector("input[name=copilotName]");
-      let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
-      let cargoMassInput = document.querySelector("input[name=cargoMass]");
+   let form = document.querySelector("form");
+   
+   let pilotNameInput = document.querySelector("input[name=pilotName]");
+   let copilotNameInput = document.querySelector("input[name=copilotName]");
+   let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
+   let cargoMassInput = document.querySelector("input[name=cargoMass]");
 
-      
+   let faultyItems = document.getElementById("faultyItems");
+   let pilotStatus = document.getElementById("pilotStatus");
+   let copilotStatus = document.getElementById("copilotStatus");
+   let fuelStatus = document.getElementById("fuelStatus");
+   let cargoStatus = document.getElementById("cargoStatus");
+   let launchStatus = document.getElementById("launchStatus");
+   
+ 
+   form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
+         response.json().then(function (json) {
+            console.log(json)
+            const container = document.getElementById("missionTarget");
+
+            let index = document.getElementById("planetDestination").value
+            index = index.value;
+            console.log(`${index}`)
+            container.innerHTML = `
+            <ol>
+            <li>Name: ${json[index].name}</li>
+            <li>Diameter: ${json[index].diameter}</li>
+            <li>Star: ${json[index].star}</li>
+            <li>Distance from Earth: ${json[index].distance}</li>
+            <li>Number of Moons: ${json[index].moons}</li>
+         </ol>
+         <img src="${json[index].image}}"></img>`;
+         });
+      });
+
+      let pilotName = document.querySelector("input[name=pilotName]");
+      let copilotName = document.querySelector("input[name=copilotName]");
+      let fuelLevel = document.querySelector("input[name=fuelLevel]");
+      let cargoMass = document.querySelector("input[name=cargoMass]");
+
+      let faultyItems = document.getElementById("faultyItems");
+      let pilotStatus = document.getElementById("pilotStatus");
+      let copilotStatus = document.getElementById("copilotStatus");
+      let fuelStatus = document.getElementById("fuelStatus");
+      let cargoStatus = document.getElementById("cargoStatus");
+      let launchStatus = document.getElementById("launchStatus");
       // fuelCargoField(fuelLevelInput, cargoMassInput);
+      if (pilotName.value === "" || copilotName.value === "" || fuelLevel.value === "" || cargoMass.value === "") {
+         alert("All fields are required.");
+      
+                } else if ((isNaN(pilotName.value) === false) || isNaN(copilotName.value) === false || isNaN(Number(fuelLevel.value)) || isNaN(Number(cargoMass.value))) {
+                        alert("Incorrect data type.");
+      
+                     } else if (fuelLevel.value < 10000) {
+         
+                           faultyItems.style.visibility = "visible";
+                           pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
+                           copilotStatus.innerHTML = (`Co-pilot ${copilotName.value} is ready.`);
+                           fuelStatus.innerHTML = (`Fuel level too low for launch.`);
+                           launchStatus.style.color = "red";
+                           launchStatus.innerHTML = (`Shuttle not ready for launch.`);
+                           
+                              } else {
+                                    fuelStatus.innerHTML = (`Fuel level high enough for launch.`);
+      };
+
+      if (cargoMassInput.value > 10000) {
+         faultyItems.style.visibility = "visible";
+         pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
+         copilotStatus.innerHTML = (`Co-pilot ${copilotName.value} is ready.`);
+         cargoStatus.innerHTML = (`Cargo mass too much for launch.`);
+         launchStatus.style.color = "red";
+         launchStatus.innerHTML = (`Shuttle not ready for launch.`);
+
+         } else {
+               cargoStatus.innerHTML = (`Cargo mass low enough for launch.`);
+               faultyItems.style.visibility = "visible";
+               launchStatus.style.color = "green";
+               launchStatus.innerHTML = (`Shuttle ready for launch.`);
+      };
    });
 });
-
-
-
-// function fuelCargoField(fuelLevelInput, cargoMassInput) {
-//    if (isNaN(fuelLevelInput) || isNaN(cargoMassInput)) {
-//          alert("Make sure to enter valid information for each field!")
-//    }
-//    if (fuelLevelInput < 10000 || cargoMassInput > 10000) {
-//       faultyItems.style.visibility = "visible"
-//       launchStatus.style.backgroundColor = "red"
-//       launchStatus.innerHTML = "Shuttle not ready for launch"
-//    } else {
-//       launchStatus.style.backgroundColor = "green"
-//       launchStatus.innerHTML = "Shuttle is ready for launch"
-//    }
-// };
-
-
-//obtain a reference to the button element
-//let form_submit = document.getElementById("formSubmit");
-//form_submit.addEventListener("click", function(event){
-
-//});
-
-
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${json[index].name}</li>
-   <li>Diameter: ${json[index].diameter}</li>
-   <li>Star: ${json[index].star}</li>
-   <li>Distance from Earth: ${json[index].distance}</li>
-   <li>Number of Moons: ${json[index].moons}</li>
-</ol>
-<img src="${https://www.nasa.gov/sites/default/files/images/587837main_Kepler16_transit_art2_full.jpg}">
 
