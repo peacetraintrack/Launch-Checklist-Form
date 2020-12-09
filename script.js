@@ -7,22 +7,26 @@ window.addEventListener("load", function () {
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
 
-      nameInput(pilotNameInput, copilotNameInput); 
-      fuel(fuelLevelInput, cargoMassInput);
+      
+      // fuelCargoField(fuelLevelInput, cargoMassInput);
    });
 });
 
-function nameInput(pilotNameInput, copilotNameInput) {
-   if (pilotNameInput.value === "" || copilotNameInput.value === "") {
-      alert("All fields are required!");
-   }
-}
 
-function fuel(fuelLevelInput, cargoMassInput) {
-   if (isNaN(fuelLevelInput) || isNaN(cargoMassInput)) {
-         alert("Invalid entry. Please enter a number!")
-   }
-};
+
+// function fuelCargoField(fuelLevelInput, cargoMassInput) {
+//    if (isNaN(fuelLevelInput) || isNaN(cargoMassInput)) {
+//          alert("Make sure to enter valid information for each field!")
+//    }
+//    if (fuelLevelInput < 10000 || cargoMassInput > 10000) {
+//       faultyItems.style.visibility = "visible"
+//       launchStatus.style.backgroundColor = "red"
+//       launchStatus.innerHTML = "Shuttle not ready for launch"
+//    } else {
+//       launchStatus.style.backgroundColor = "green"
+//       launchStatus.innerHTML = "Shuttle is ready for launch"
+//    }
+// };
 
 
 //obtain a reference to the button element
@@ -35,11 +39,11 @@ function fuel(fuelLevelInput, cargoMassInput) {
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
 <h2>Mission Destination</h2>
 <ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
+   <li>Name: ${json[index].name}</li>
+   <li>Diameter: ${json[index].diameter}</li>
+   <li>Star: ${json[index].star}</li>
+   <li>Distance from Earth: ${json[index].distance}</li>
+   <li>Number of Moons: ${json[index].moons}</li>
 </ol>
-<img src="${}">
-*/
+<img src="${https://www.nasa.gov/sites/default/files/images/587837main_Kepler16_transit_art2_full.jpg}">
+
