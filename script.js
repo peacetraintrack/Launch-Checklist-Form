@@ -5,11 +5,11 @@ window.addEventListener("load", function () {
       // event.preventDefault();
 
       fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
-         response.json().then(function (json) {
-            console.log(json)
+          response.json().then(function (json) {
+             console.log(json);
             let container = document.getElementById("missionTarget");
             let index = document.getElementById("planetDestination").value
-            container.innerHTML = 
+             container.innerHTML += 
             `<ol>
             <li>Name: ${json[index].name}</li>
             <li>Diameter: ${json[index].diameter}</li>
@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
             <li>Distance from Earth: ${json[index].distance}</li>
             <li>Number of Moons: ${json[index].moons}</li>
          </ol>
-         <img src="${json[index].image}}"></img>`;
+         <img src="${json[index].image}}"></img>`
          });
       });
 
@@ -37,7 +37,7 @@ window.addEventListener("load", function () {
          alert("All fields are required.");
       
          } else if ((isNaN(pilotName.value) === false) || isNaN(copilotName.value) === false || isNaN(Number(fuelLevel.value)) || isNaN(Number(cargoMass.value))) {
-                     alert("Incorrect data type.");
+                     alert("Make sure to enter valid information for each field.");
       
             } else if (fuelLevel.value < 10000) {
          
