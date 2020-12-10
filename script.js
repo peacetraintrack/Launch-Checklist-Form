@@ -1,9 +1,8 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function () {
    let form = document.querySelector("form");
-   
    form.addEventListener("submit", function (event) {
-      event.preventDefault();
+      // event.preventDefault();
 
       fetch("https://handlers.education.launchcode.org/static/planets.json").then(function (response) {
          response.json().then(function (json) {
@@ -12,9 +11,9 @@ window.addEventListener("load", function () {
 
             let index = document.getElementById("planetDestination").value
             index = index.value;
-            console.log(`${index}`)
-            container.innerHTML = `
-            <ol>
+            // console.log(`${index}`)
+            container.innerHTML = 
+            `<ol>
             <li>Name: ${json[index].name}</li>
             <li>Diameter: ${json[index].diameter}</li>
             <li>Star: ${json[index].star}</li>
@@ -52,24 +51,22 @@ window.addEventListener("load", function () {
                      launchStatus.style.color = "red";
                      launchStatus.innerHTML = (`Shuttle not ready for launch.`);
                            
-               } else {
-                     fuelStatus.innerHTML = (`Fuel level high enough for launch.`);
+               } else if (cargoMass.value > 10000) {
+                     faultyItems.style.visibility = "visible";
+                     pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
+                     copilotStatus.innerHTML = (`Co-pilot ${copilotName.value} is ready.`);
+                     cargoStatus.innerHTML = (`Cargo mass too much for launch.`);
+                     launchStatus.style.color = "red";
+                     launchStatus.innerHTML = (`Shuttle not ready for launch.`);
+                        
+                   } else {
+                        fuelStatus.innerHTML = (`Fuel level high enough for launch.`);
+                        cargoStatus.innerHTML = (`Cargo mass low enough for launch.`);
+                        faultyItems.style.visibility = "visible";
+                        launchStatus.style.color = "green";
+                        launchStatus.innerHTML = (`Shuttle ready for launch.`);
       };
-
-      if (cargoMassInput.value > 10000) {
-         faultyItems.style.visibility = "visible";
-         pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
-         copilotStatus.innerHTML = (`Co-pilot ${copilotName.value} is ready.`);
-         cargoStatus.innerHTML = (`Cargo mass too much for launch.`);
-         launchStatus.style.color = "red";
-         launchStatus.innerHTML = (`Shuttle not ready for launch.`);
-
-         } else {
-               cargoStatus.innerHTML = (`Cargo mass low enough for launch.`);
-               faultyItems.style.visibility = "visible";
-               launchStatus.style.color = "green";
-               launchStatus.innerHTML = (`Shuttle ready for launch.`);
-      };
+                           event.preventDefault();
    });
 });
 
