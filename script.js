@@ -8,10 +8,7 @@ window.addEventListener("load", function () {
          response.json().then(function (json) {
             console.log(json)
             let container = document.getElementById("missionTarget");
-
             let index = document.getElementById("planetDestination").value
-            index = index.value;
-            // console.log(`${index}`)
             container.innerHTML = 
             `<ol>
             <li>Name: ${json[index].name}</li>
@@ -65,8 +62,8 @@ window.addEventListener("load", function () {
                         faultyItems.style.visibility = "visible";
                         launchStatus.style.color = "green";
                         launchStatus.innerHTML = (`Shuttle ready for launch.`);
-      };
+         };
                            event.preventDefault();
-   });
+    });
 });
 
