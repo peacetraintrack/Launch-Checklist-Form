@@ -39,7 +39,7 @@ window.addEventListener("load", function () {
          } else if ((isNaN(pilotName.value) === false) || isNaN(copilotName.value) === false || isNaN(Number(fuelLevel.value)) || isNaN(Number(cargoMass.value))) {
                      alert("Make sure to enter valid information for each field.");
       
-            } else if (fuelLevel.value < 10000) {
+            } else if (fuelLevel.value < 10000 && cargoMass.value <10000) {
          
                      faultyItems.style.visibility = "visible";
                      pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
@@ -47,15 +47,17 @@ window.addEventListener("load", function () {
                      fuelStatus.innerHTML = (`Fuel level too low for launch.`);
                      launchStatus.style.color = "red";
                      launchStatus.innerHTML = (`Shuttle not ready for launch.`);
+                     cargoStatus.innerHTML = (`Cargo mass low enough for launch.`);
                            
-               } else if (cargoMass.value > 10000) {
+               } else if (cargoMass.value > 10000 && fuelLevel.value >10000) {
                      faultyItems.style.visibility = "visible";
                      pilotStatus.innerHTML = (`Pilot ${pilotName.value} is ready.`);
                      copilotStatus.innerHTML = (`Co-pilot ${copilotName.value} is ready.`);
                      cargoStatus.innerHTML = (`Cargo mass too much for launch.`);
                      launchStatus.style.color = "red";
                      launchStatus.innerHTML = (`Shuttle not ready for launch.`);
-                        
+                     fuelStatus.innerHTML = (`Fuel level high enough for launch.`);              
+         
                    } else {
                         fuelStatus.innerHTML = (`Fuel level high enough for launch.`);
                         cargoStatus.innerHTML = (`Cargo mass low enough for launch.`);
