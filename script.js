@@ -26,10 +26,6 @@ window.addEventListener("load", function () {
          });
       });
 
-
-
-
-
       let pilotName = document.querySelector("input[name=pilotName]");
       let copilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
