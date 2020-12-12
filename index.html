@@ -7,18 +7,17 @@
     </head>
     <body>
         <h1>Launch Checklist Form</h1>
-        <div id="missionTarget"  >
+        <div id="missionTarget" src= "https://handlers.education.launchcode.org/static/planets.json">
            
-            <!-- Fetch some planetary data -->
             <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: </li>
+                    <li>Name:  </li>
                     <li>Diameter: </li>
                     <li>Star: </li>
                     <li>Distance from Earth: </li>
                     <li>Number of Moons: </li>
                 </ol>
-                    <img></img>
+                    <img id= "destination" src= "https://handlers.education.launchcode.org/static/planets.json">
             
         </div> 
 
@@ -36,20 +35,7 @@
                 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 8 0;">
                     <label>Cargo Mass (kg) <input type="text" name="cargoMass"/></label>
                 </div>
-                <!-- <div style="display:flex; flex-direction: row; justify-content: center; align-items: center; margin: 28 0;">
-                    <label>Destination Planet: 
-                        <select name = "planetDestination" id="planetDestination">
-                            <option value=""> *Choose Destination*</option>
-                            <option value="0">Tatooine</option>
-                            <option value="1">Pern</option>
-                            <option value="2">Saturn/Titan</option>
-                            <option value="3">Mars</option>
-                            <option value="4">K2-188</option>
-                            <option value="5">Jupiter/Europa</option>
-                        </select>
-                    </label>
-
-                </div> -->
+                
                 <button id="formSubmit">Submit</button>
             </form>
         </div>
