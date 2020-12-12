@@ -4,28 +4,6 @@ window.addEventListener("load", function () {
    form.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
-         response.json().then(function(json) {
-            console.log(json);
-            const destination = document.getElementById("missionTarget");
-            
-            destination.addEventListener("load", function () {
-               
-               missionTarget.innerHTML = `
-               <ol>
-               <li>Name: ${json[2].name}</li>
-               <li>Diameter: ${json[2].diameter}</li>
-               <li>Star: ${json[2].star}</li>
-               <li>Distance from Earth: ${json[2].distance}</li>
-               <li>Number of Moons: ${json[2].moons}</li>
-                  
-               <img src=${json[2].image} height=250></img>
-                 
-               `;
-            });
-         });
-      });
-
       let pilotName = document.querySelector("input[name=pilotName]");
       let copilotName = document.querySelector("input[name=copilotName]");
       let fuelLevel = document.querySelector("input[name=fuelLevel]");
@@ -83,6 +61,25 @@ window.addEventListener("load", function () {
       };
       event.preventDefault();
    });
+
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+      response.json().then(function(json) {
+         // console.log(json);
+         const destination = document.getElementById("missionTarget");
+            
+            destination.innerHTML = `
+            <ol>
+            <li>Name: ${json[2].name}</li>
+            <li>Diameter: ${json[2].diameter}</li>
+            <li>Star: ${json[2].star}</li>
+            <li>Distance from Earth: ${json[2].distance}</li>
+            <li>Number of Moons: ${json[2].moons}</li>
+               
+            <img src=${json[2].image} height=250></img>`;
+              
+      });
+   });
+      
 });
 
 
